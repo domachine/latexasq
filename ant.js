@@ -20,16 +20,6 @@ function intention (n, m) {
     return (random > frontier) ? n : m;
 }
 
-function calcFrontier (edges) {
-    switch (edges.length) {
-    case 0: return undefined;
-    case 1: return edges[0].pheromone;
-    default: {
-        var nextFrontier = calcFrontier (edges.splice (1, 0));
-    }
-    };
-}
-
 /*
   Does all the dirty probability work and returns the node where the
   ant should go next.
