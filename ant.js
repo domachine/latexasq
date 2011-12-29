@@ -56,33 +56,26 @@ function step (root) {
         for (var i in node.ants) {
 
             var ant = node.ants[i];
-            var nextNode = undefined;
-            if(ant.searching === true){
-                nextNode = nextNode(ant, node);
+            var next = nextNode(ant, node);
+            if(ant.searching === true && next !== undefined){
+                //set ant on next node
+                next.ants.push(ant);
+                node.ants[i] = undefined;
 
-                if (nextNode == undefined){
-                    //ant arrived at end of graph
-                    ant.searching = false;
-                    //remove last Node, for going home
-                    ant.returnPath.pop();
-                }else{
-                    //set ant on next node
-                    nextNode.ants.push(ant);
-                    node.ants[i] = undefined;
-
-                    ant.returnPath.push(nextNode);
-                }
+                ant.returnPath.push(node);
             }else{
                 //ant is on way back home
-                nextNode = ant.returnPath.pop();
+                ant.searching = false;
 
-                nextNode.ants.push(ant);
+                next = ant.returnPath.pop();
+
+                next.ants.push(ant);
                 node.ants[i] = undefined;
             }
 
             //increase pheromone
-            if(nextNode !== undefined){
-                nextNode.pheromone += 1;
+            if(next !== undefined){
+                next.pheromone += 1;
             }
         }
         //reorder ants in array
