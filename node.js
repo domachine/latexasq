@@ -1,8 +1,4 @@
 
-var const = {
-    MAX_CHILDS: 10
-};
-
 // Represents a node in the path.
 function Node (edges) {
     return {
@@ -20,7 +16,10 @@ function buildPath (depth) {
         else {
             // Build new Node and put it into the
             // chain.
-            var countChilds = Math.floor(Math.random() * const.MAX_CHILDS);
+            var countChilds = Math.floor(Math.random() * globalsN.MAX_CHILDS);
+            if(countChilds == 0)
+                return undefined;
+            
             var newNode = Node (countChilds);
             for( var i = 0, i < countChilds; i++ )
                 // Recursive call.
