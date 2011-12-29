@@ -64,19 +64,52 @@ function nextNode (ant, node) {
 function step (root) {
     var _process = function (node) {
         for (var i in node.ants) {
-            if (true){
-	      //entscheiden, wo ameise hingeht
 
-	      //ameise von node nehmen
-	      //ameise auf node setzten
-	      //returnPath von ameisen anpassen
-	      //pheromonspur hinzufügen
+            var ant = node.ants[i];
+            var nextNode = undefined;
+            if(ant.searching === true){
+                nextNode = nextNode(ant, node);
+
+                if (nextNode == undefined){
+                    //ant arrived at end of graph
+                    ant.searching = false;
+                    //remove last Node, for going home
+                    ant.returnPath.pop();
+                }else{
+                    //set ant on next node
+                    nextNode.ants.push(ant);
+                    node.ants[i] = undefined;
+
+                    ant.returnPath.push(nextNode);
+                }
+            }else{
+                //ant is on way back home
+                nextNode = ant.returnPath.pop();
+
+                nextNode.ants.push(ant);
+                node.ants[i] = undefined;
+            }
+
+            //increase pheromone
+            if(nextNode !== undefined){
+                nextNode.pheromone += 1;
             }
         }
+        //reorder ants in array
+        var ants = new Array();
+        for (var i in node.ants){
+            var ant = node.ants[i];
+            if(ant != undefined){
+                ants.push(ant);
+            }
+        }
+        node.ants = ants;
+
         for (var i in node.edges)
             //recursive process subnodes
             _process(node.edges[i]);
     };
+
     _process (root);
 }
 
