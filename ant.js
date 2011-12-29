@@ -70,7 +70,7 @@ exports.step = function (root) {
 
             var ant = node.ants[i];
             var next = nextNode(ant, node);
-            if(ant.searching === true && next !== undefined){
+            if(ant.searching && next !== undefined){
                 //set ant on next node
                 next.ants.push(ant);
                 node.ants[i] = undefined;
