@@ -4,11 +4,11 @@ function Node (edges) {
     return {
         edges: new Array (edges),
         pheromone: 0,
-        ants: []
+        ants: new Array()
     };
 }
 
-function buildPath (depth) {
+exports.buildPath = function (depth) {
     var _buildPath = function (depth) {
         if (depth === 0) {
             return undefined;
@@ -18,10 +18,11 @@ function buildPath (depth) {
             // chain.
             var countChilds = Math.floor(Math.random() * globalsN.MAX_CHILDS);
             if(countChilds == 0)
-                return undefined;
-            
+                countChilds = 1;
+                //return undefined;
+
             var newNode = Node (countChilds);
-            for( var i = 0, i < countChilds; i++ )
+            for( var i = 0; i < countChilds; i++ )
                 // Recursive call.
                 newNode.edges[i] = _buildPath (depth - 1);
 

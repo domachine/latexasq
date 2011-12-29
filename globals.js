@@ -1,2 +1,2 @@
-var MAX_CHILDS = 2;
-var MAX_ANTS = 10;
+exports.MAX_CHILDS = 5;
+exports.MAX_ANTS = 10;

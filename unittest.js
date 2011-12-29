@@ -25,22 +25,26 @@ function stepTest (root) {
     var countAnts = Math.floor(Math.random() * globalsN.MAX_ANTS);
     var ants = new Array(countAnts);
     for(var i = 0; i < countAnts; i++)
-        ants[i] = ant.Ant();
+        ants[i] = antN.Ant();
+
     root.ants = ants;
     
-    step(root);
+    antN.step(root);
 }
 
 function main(){
-    var root = buildPath (5);
+    root = nodeN.buildPath (5);
 
-    require('tty').setRawMode(true);    
     var stdin = process.openStdin();
+    require('tty').setRawMode(true);    
 
     stdin.on('keypress', function (chunk, key) {
-        process.nextTick(function(){
-            stepTest(root);
-        });
+        if(key && key.name == 's')
+            process.nextTick(function(){
+                stepTest(root);
+                console.log("step");
+//                 console.info(root);
+            });
         
         if (key && key.ctrl && key.name == 'c') process.exit();
     });

@@ -1,6 +1,6 @@
 // Intention states of the ants.
 
-function Ant () {
+exports.Ant = function () {
     return {
         searching: true,
         returnPath: []
@@ -15,12 +15,12 @@ function intention (n, m) {
       m = tmp;
     }
 
-    var random = Math.floor(Math.random() * m) + n:
+    var random = Math.floor(Math.random() * m) + n;
     var frontier = n + ( m/n );
     return (random > frontier) ? n : m;
 }
 
-Array.prototype.clone = function () {
+function copy(array) {
     var newArray = new Array (array.length);
 
     for (var i in array)
@@ -41,7 +41,7 @@ function nextNode (ant, node) {
     var sum = 0;
     var random;
     var nEdges = node.edges.length;
-    var edges = node.edges.clone ();
+    var edges = copy(node.edges);
 
     edges.sort ();
 
@@ -55,15 +55,16 @@ function nextNode (ant, node) {
 
     random = Math.floor(Math.random() * sum);
 
-    for (var i in node.edges) {
-        if (node.edges[i] <= a[i])
+    for (var i in edges) {
+        if (edges[i] <= a[i])
             return edges[i];
     }
 
     return undefined;
 }
 
-function step (root) {
+exports.step = function (root) {
+    console.info(root);
     var _process = function (node) {
         for (var i in node.ants) {
 
@@ -80,8 +81,12 @@ function step (root) {
                 ant.searching = false;
 
                 next = ant.returnPath.pop();
-
-                next.ants.push(ant);
+                if(next === undefined){
+                    //ant back at home => destroy!
+                    ant = undefined;
+                }else{
+                    next.ants.push(ant);
+                }
                 node.ants[i] = undefined;
             }
 
@@ -94,7 +99,7 @@ function step (root) {
         var ants = new Array();
         for (var i in node.ants){
             var ant = node.ants[i];
-            if(ant != undefined){
+            if(ant !== undefined){
                 ants.push(ant);
             }
         }
@@ -102,10 +107,12 @@ function step (root) {
 
         for (var i in node.edges)
             //recursive process subnodes
-            _process(node.edges[i]);
+            if(node.edges[i] !== undefined)
+                _process(node.edges[i]);
     };
 
     _process (root);
+    console.info(root);
 }
 
 //n + (m/n) zum festlegen der Grenze,
