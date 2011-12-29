@@ -73,7 +73,9 @@ exports.step = function (root) {
 
             var ant = node.ants[i];
             var next = nextNode(ant, node);
+            
             if(ant.searching === true && next !== undefined){
+                next.nextEl = true;
                 //set ant on next node
                 next.ants.push(ant);
                 node.ants[i] = undefined;
@@ -98,15 +100,18 @@ exports.step = function (root) {
                 next.pheromone += 1;
             }
         }
-        //reorder ants in array
-        var ants = new Array();
-        for (var i in node.ants){
-            var ant = node.ants[i];
-            if(ant !== undefined){
-                ants.push(ant);
+        
+        if(node.ants.length != 0){
+            //reorder ants in array
+            var ants = new Array();
+            for (var i in node.ants){
+                var ant = node.ants[i];
+                if(ant !== undefined){
+                    ants.push(ant);
+                }
             }
+            node.ants = ants;
         }
-         node.ants = ants;
 
         for (var i in node.edges)
             //recursive process subnodes
