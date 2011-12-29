@@ -47,6 +47,8 @@ function nextNode (ant, node) {
 
     // Fill array.
     for (var i in edges) {
+        if(edges[i] === undefined)
+            continue;
         var edge = edges[i];
 
         a.push (edge.pheromone + sum);
@@ -56,7 +58,9 @@ function nextNode (ant, node) {
     random = Math.floor(Math.random() * sum);
 
     for (var i in edges) {
-        if (edges[i] <= a[i])
+        if(edges[i] === undefined)
+            continue;
+        if (edges[i].pheromone <= a[i])
             return edges[i];
     }
 
@@ -64,7 +68,6 @@ function nextNode (ant, node) {
 }
 
 exports.step = function (root) {
-    console.info(root);
     var _process = function (node) {
         for (var i in node.ants) {
 
@@ -103,7 +106,7 @@ exports.step = function (root) {
                 ants.push(ant);
             }
         }
-        node.ants = ants;
+         node.ants = ants;
 
         for (var i in node.edges)
             //recursive process subnodes
@@ -112,7 +115,6 @@ exports.step = function (root) {
     };
 
     _process (root);
-    console.info(root);
 }
 
 //n + (m/n) zum festlegen der Grenze,

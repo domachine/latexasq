@@ -43,7 +43,7 @@ function main(){
             process.nextTick(function(){
                 stepTest(root);
                 console.log("step");
-//                 console.info(root);
+                console.info(root);
             });
         
         if (key && key.ctrl && key.name == 'c') process.exit();
