@@ -15,6 +15,12 @@ function buildPathTest () {
     };
 }
 
+function stepTest () {
+    var path = buildPath (5);
+
+
+}
+
 function runTests () {
     buildPathTest ();
 }
