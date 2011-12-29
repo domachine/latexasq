@@ -20,6 +20,15 @@ function intention (n, m) {
     return (random > frontier) ? n : m;
 }
 
+Array.prototype.clone = function () {
+    var newArray = new Array (array.length);
+
+    for (var i in array)
+        newArray[i] = array[i];
+
+    return newArray;
+}
+
 /*
   Does all the dirty probability work and returns the node where the
   ant should go next.
@@ -32,20 +41,23 @@ function nextNode (ant, node) {
     var sum = 0;
     var random;
     var nEdges = node.edges.length;
+    var edges = node.edges.clone ();
+
+    edges.sort ();
 
     // Fill array.
-    for (var i in node.edges) {
-        var edge = node.edges[i];
+    for (var i in edges) {
+        var edge = edges[i];
 
-        a.push (edge.pheromone);
-        sum += edge.pheromone;
+        a.push (edge.pheromone + sum);
+        sum += (edge.pheromone + sum);
     }
 
     random = Math.floor(Math.random() * sum);
 
     for (var i in node.edges) {
         if (node.edges[i] <= a[i])
-            return node.edges[i];
+            return edges[i];
     }
 
     return undefined;
