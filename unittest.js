@@ -33,7 +33,7 @@ function addAnts (root) {
 function main(){
     root = nodeN.buildPath (5);
     addAnts(root);
-    console.info(root);
+    console.info(JSON.stringify(root));
     
     var stdin = process.openStdin();
     require('tty').setRawMode(true);    
@@ -44,11 +44,27 @@ function main(){
                 console.log("step");
                 antN.step(root);
                 addAnts(root);
-                console.info(root);
+                try{
+                    console.info(JSON.stringify(root));
+                }catch(err){
+                    console.error(err);
+                    debug(root);
+                }
             });
         
         if (key && key.ctrl && key.name == 'c') process.exit();
     });
+}
+
+function debug(node){
+    try{
+        var test = JSON.stringify(node);
+        console.log(test);
+    }catch(err){
+        console.error(err);
+        for(var i = 0; i < node.edges.length; i++)
+            debug(node.edges[i]);
+    }
 }
 
 function runTests () {
