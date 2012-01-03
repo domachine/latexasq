@@ -31,6 +31,7 @@ exports.buildPath = function (depth) {
     };
 
     var root = _buildPath (depth);
-
+    root.stepcount = 0;
+    
     return root;
 }

@@ -20,7 +20,7 @@ function buildPathTest () {
     };
 }
 
-function stepTest (root) {
+function addAnts (root) {
     
     var countAnts = Math.floor(Math.random() * globalsN.MAX_ANTS);
     var ants = new Array(countAnts);
@@ -28,21 +28,22 @@ function stepTest (root) {
         ants[i] = antN.Ant();
 
     root.ants = ants;
-    
-    antN.step(root);
 }
 
 function main(){
     root = nodeN.buildPath (5);
-
+    addAnts(root);
+    console.info(root);
+    
     var stdin = process.openStdin();
     require('tty').setRawMode(true);    
 
     stdin.on('keypress', function (chunk, key) {
         if(key && key.name == 's')
             process.nextTick(function(){
-                stepTest(root);
                 console.log("step");
+                antN.step(root);
+                addAnts(root);
                 console.info(root);
             });
         
