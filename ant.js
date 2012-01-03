@@ -7,7 +7,6 @@ exports.Ant = function () {
         stepcount: 0
     };
 }
-    console.log(test);
 
 // Generates an intention based on the numeric left and right.
 function intention (n, m) {
