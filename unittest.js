@@ -3,6 +3,7 @@
 globalsN = require('./globals.js');
 antN = require('./ant.js');
 nodeN = require('./node.js');
+graphvizN = require('./graphviz.js');
 
 function assert (cond) {
     if (! cond ())
@@ -33,7 +34,7 @@ function addAnts (root) {
 function main(){
     root = nodeN.buildPath (5);
     addAnts(root);
-    console.info(JSON.stringify(root));
+    graphvizN.save(root);
     
     var stdin = process.openStdin();
     require('tty').setRawMode(true);    
@@ -44,12 +45,8 @@ function main(){
                 console.log("step");
                 antN.step(root);
                 addAnts(root);
-                try{
-                    console.info(JSON.stringify(root));
-                }catch(err){
-                    console.error(err);
-                    debug(root);
-                }
+
+                graphvizN.save(root);
             });
         
         if (key && key.ctrl && key.name == 'c') process.exit();

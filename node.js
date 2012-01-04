@@ -19,6 +19,8 @@ exports.buildPath = function (depth) {
             // Build new Node and put it into the
             // chain.
             var countChilds = Math.floor(Math.random() * globalsN.MAX_CHILDS);
+            if(countChilds == 0)
+                countChilds = 1;
             if(depth === 1)//is leafnode
                 countChilds = 0;
             
