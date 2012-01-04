@@ -46,7 +46,7 @@ function main(){
             process.nextTick(function(){
                 console.log("step");
                 antN.step(root);
-                //addAnts(root);
+                addAnts(root);
 
                 graphvizN.save(root);
             });
