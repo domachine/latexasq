@@ -3,7 +3,8 @@
 exports.Ant = function () {
     return {
         searching: true,
-        returnPath: []
+        returnPath: [],
+        stepcount: 0
     };
 }
 
@@ -68,12 +69,19 @@ function nextNode (ant, node) {
 }
 
 exports.step = function (root) {
+    var stepcount = root.stepcount++;
+
     var _process = function (node) {
         for (var i in node.ants) {
 
             var ant = node.ants[i];
+            if(ant.stepcount > stepcount)
+                continue;
+            ant.stepcount++;
+
             var next = nextNode(ant, node);
-            if(ant.searching && next !== undefined){
+
+            if(ant.searching === true && next !== undefined){
                 //set ant on next node
                 next.ants.push(ant);
                 node.ants[i] = undefined;
@@ -84,13 +92,10 @@ exports.step = function (root) {
                 ant.searching = false;
 
                 next = ant.returnPath.pop();
-                if(next === undefined){
-                    //ant back at home => destroy!
-                    ant = undefined;
-                }else{
+                if(next !== undefined){
                     next.ants.push(ant);
-                }
-                node.ants[i] = undefined;
+                    node.ants[i] = undefined;
+                }//else leave ant at startpoint
             }
 
             //increase pheromone
@@ -98,15 +103,18 @@ exports.step = function (root) {
                 next.pheromone += 1;
             }
         }
-        //reorder ants in array
-        var ants = new Array();
-        for (var i in node.ants){
-            var ant = node.ants[i];
-            if(ant !== undefined){
-                ants.push(ant);
+
+        if(node.ants.length != 0){
+            //reorder ants in array
+            var ants = new Array();
+            for (var i in node.ants){
+                var ant = node.ants[i];
+                if(ant !== undefined){
+                    ants.push(ant);
+                }
             }
+            node.ants = ants;
         }
-         node.ants = ants;
 
         for (var i in node.edges)
             //recursive process subnodes

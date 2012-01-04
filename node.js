@@ -1,10 +1,12 @@
-
+var id = 0;
 // Represents a node in the path.
 function Node (edges) {
+    id++;
     return {
         edges: new Array (edges),
         pheromone: 0,
-        ants: new Array()
+        ants: new Array(),
+        id: id
     };
 }
 
@@ -17,10 +19,9 @@ exports.buildPath = function (depth) {
             // Build new Node and put it into the
             // chain.
             var countChilds = Math.floor(Math.random() * globalsN.MAX_CHILDS);
-            if(countChilds == 0)
-                countChilds = 1;
-                //return undefined;
-
+            if(depth === 1)//is leafnode
+                countChilds = 0;
+            
             var newNode = Node (countChilds);
             for( var i = 0; i < countChilds; i++ )
                 // Recursive call.
@@ -31,6 +32,7 @@ exports.buildPath = function (depth) {
     };
 
     var root = _buildPath (depth);
-
+    root.stepcount = 0;
+    
     return root;
 }
