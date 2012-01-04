@@ -25,8 +25,10 @@ function addAnts (root) {
     
     var countAnts = Math.floor(Math.random() * globalsN.MAX_ANTS);
     var ants = new Array(countAnts);
-    for(var i = 0; i < countAnts; i++)
+    for(var i = 0; i < countAnts; i++){
         ants[i] = antN.Ant();
+        ants[i].stepcount = root.stepcount;
+    }
 
     root.ants = ants;
 }
@@ -44,7 +46,7 @@ function main(){
             process.nextTick(function(){
                 console.log("step");
                 antN.step(root);
-                addAnts(root);
+                //addAnts(root);
 
                 graphvizN.save(root);
             });

@@ -77,6 +77,7 @@ exports.step = function (root) {
             var ant = node.ants[i];
             if(ant.stepcount > stepcount)
                 continue;
+
             ant.stepcount++;
 
             var next = nextNode(ant, node);
@@ -87,6 +88,7 @@ exports.step = function (root) {
                 node.ants[i] = undefined;
 
                 ant.returnPath.push(node);
+                next.pheromone++;
             }else{
                 //ant is on way back home
                 ant.searching = false;
@@ -95,12 +97,8 @@ exports.step = function (root) {
                 if(next !== undefined){
                     next.ants.push(ant);
                     node.ants[i] = undefined;
+                    node.pheromone++;
                 }//else leave ant at startpoint
-            }
-
-            //increase pheromone
-            if(next !== undefined){
-                next.pheromone += 1;
             }
         }
 
