@@ -42,29 +42,40 @@ function nextNode (ant, node) {
     var sum = 0;
     var random;
     var nEdges = node.edges.length;
+    if(nEdges == 0)
+        return undefined;
+    
     var edges = copy(node.edges);
 
     edges.sort ();
-
+    
     // Fill array.
     for (var i in edges) {
         if(edges[i] === undefined)
             continue;
         var edge = edges[i];
 
-        a.push (edge.pheromone + sum);
-        sum += (edge.pheromone + sum);
+        var pheromone = edge.pheromone;
+        if(pheromone == 0)//use 1 instead for no calc issues
+            pheromone = 1;
+        a.push (pheromone + sum);
+        sum += (pheromone + sum);
     }
 
-    random = Math.floor(Math.random() * sum);
+    random = Math.floor(Math.random() * (a[a.length-1]+1));//generates random int between 0 and sum
 
     for (var i in edges) {
         if(edges[i] === undefined)
             continue;
-        if (edges[i].pheromone <= a[i])
+        
+        if (a[i] >= random)
             return edges[i];
     }
-
+    console.log("nextnode undefined!");//BUG BUG BUG THIS NEVER EVER SHOULD HAPPEN
+    console.info("rang: 0-"+sum);
+    console.info("random: "+random);
+    console.info(edges);
+    console.info(a);
     return undefined;
 }
 
@@ -73,16 +84,15 @@ exports.step = function (root) {
 
     var _process = function (node) {
         for (var i in node.ants) {
-
+            //just forward gooing ants
             var ant = node.ants[i];
+            
             if(ant.stepcount > stepcount)
                 continue;
-
             ant.stepcount++;
 
             var next = nextNode(ant, node);
-
-            if(ant.searching === true && next !== undefined){
+            if(next !== undefined){
                 //set ant on next node
                 next.ants.push(ant);
                 node.ants[i] = undefined;
@@ -90,16 +100,27 @@ exports.step = function (root) {
                 ant.returnPath.push(node);
                 next.pheromone++;
             }else{
-                //ant is on way back home
-                ant.searching = false;
-
-                next = ant.returnPath.pop();
-                if(next !== undefined){
-                    next.ants.push(ant);
-                    node.ants[i] = undefined;
-                    node.pheromone++;
-                }//else leave ant at startpoint
+                //ant at leaf node => go home!
+                node.antsOnHomerun.push(ant);
+                node.ants[i] = undefined;
             }
+        }
+        
+        for (var i in node.antsOnHomerun){
+            //just homerunning ants
+            var ant = node.antsOnHomerun[i];
+            
+            if(ant.stepcount > stepcount)
+                continue;
+            ant.stepcount++;
+    
+            next = ant.returnPath.pop();
+            if(next !== undefined){
+                next.antsOnHomerun.push(ant);
+            }
+            
+            node.antsOnHomerun[i] = undefined;
+            node.pheromone++;
         }
 
         if(node.ants.length != 0){
@@ -112,6 +133,18 @@ exports.step = function (root) {
                 }
             }
             node.ants = ants;
+        }
+        
+        if(node.antsOnHomerun.length != 0){
+            //reorder ants in array
+            var ants = new Array();
+            for (var i in node.antsOnHomerun){
+                var ant = node.antsOnHomerun[i];
+                if(ant !== undefined){
+                    ants.push(ant);
+                }
+            }
+            node.antsOnHomerun = ants;
         }
 
         for (var i in node.edges)

@@ -15,7 +15,7 @@ exports.save = function(root){
 
 
 exports.draw = function(node, fathernodetext, depth){
-    var nodetext = "\"Node " + node.id + "\\n(Ants: " + node.ants.length + ")\"";
+    var nodetext = "\"Node " + node.id + "\\n(Ants: " + node.ants.length + "/" + node.antsOnHomerun.length + ")\"";
     var output = "";
     for(var i in node.edges){
         output += exports.draw(node.edges[i], nodetext, depth+1);
