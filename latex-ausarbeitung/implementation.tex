@@ -2,3 +2,132 @@
 
 \section{Implementierungsdetails}
 
+Der Versuch wird durch ein Javascript Programm nachgestellt, das einen
+Graphen in Baumform aufbaut und zufallgesteuert „Ameisen” erzeugt um
+diese auf dem Graphen zu platzieren. Dann wird der Zustand des Graphen
+immer schrittweise geändert. Dabei wird für jede einzelne Ameise auf
+jedem Knoten per Zufall entschieden, welchen Weg diese
+einschlägt. Dieser Zufall wird beeinflusst von den auf den Knoten
+anliegenden „Pheromonspuren”. Diese werden erzeugt, wenn eine Ameise
+einen Knoten überkreuzt hat. Um den Zustand zu ändern, wird eine
+Funktion \emph{step} verwendet, die in einem bestimmten Takt
+aufgerufen wird (Siehe \ref{fig:stepfn}).
+
+Die Funktion steigt rekursiv in den kompletten Pfad ab und ändert wie
+oben beschrieben selbigen ab.
+
+\begin{figure}[htbp]
+  \centering
+
+\begin{lstlisting}
+exports.step = function (root) {
+    var stepcount = root.stepcount++;
+
+    var _process = function (node) {
+        for (var i in node.ants) {
+            //just forward gooing ants
+            var ant = node.ants[i];
+
+            if(ant.stepcount > stepcount)
+                continue;
+
+            var next = nextNode(ant, node);
+            if(next !== undefined){
+                //set ant on next node
+                next.ants.push(ant);
+                node.ants[i] = undefined;
+
+                ant.returnPath.push(node);
+                next.pheromone++;
+
+                ant.stepcount++;
+            } else {
+                node.antsOnHomerun.push(ant);
+                node.ants[i] = undefined;
+            }
+        }
+
+        for (var i in node.antsOnHomerun){
+          // Zuruecklaufende Ameisen werden behandelt
+          // Aehnlich wie suchende Ameisen behandelt
+          .
+          .
+          .
+        }
+
+        .
+        .
+        .
+
+        for (var i in node.edges)
+            //recursive process subnodes
+            if(node.edges[i] !== undefined)
+                _process(node.edges[i]);
+    };
+
+    _process (root);
+}
+\end{lstlisting}
+  \caption{Step Funktion}
+  \label{fig:stepfn}
+\end{figure}
+
+Um das ganze nun anschaulisch und für Expermente zugänglich wird das
+Werkzeug \emph{Graphivz} verwendet um den Pfad nach jedem Schritt zu
+visualisieren. Hierfür werden sogenannte \emph{DOT} Dateien
+geschrieben, die \emph{Graphivz} einlesen und interpretieren
+kann. Verwendet werden hierfür die Funktionen \emph{draw} (siehe
+\ref{fig:drawfn}) und \emph{save} (siehe \ref{fig:savefn}).
+
+\begin{figure}[htbp]
+  \centering
+  \begin{lstlisting}
+exports.draw = function(node, fathernodetext, depth){
+    var nodetext = "\"Node " +
+               node.id +
+               "\\n(Ants: " +
+               node.ants.length +
+               "/" +
+               node.antsOnHomerun.length + ")\"";
+    var output = "";
+    for(var i in node.edges){
+        output += exports.draw(node.edges[i], nodetext, depth+1);
+    }
+    var color = "";
+    if(node.edges.length == 0){
+        color = nodetext + " [style=filled,color=\"gray\"];\n\t";
+    }
+    if(fathernodetext !== undefined)
+        return color + fathernodetext +
+               " -> " + nodetext +
+               " [label=" + node.pheromone + "];\n\t " +
+               output;
+    else
+        return "\n\t "+output;
+}
+  \end{lstlisting}
+  \caption{Draw Funktion}
+  \label{fig:drawfn}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{lstlisting}
+exports.save = function(root, id){
+
+    var output = "digraph G {\n";
+    output += "\t" + exports.draw(root, undefined, 0);
+    output += "\n}";
+
+    //var sys = require('sys');
+    var exec = require('child_process').exec;
+    function puts(error, stdout, stderr) { /*sys.puts(stdout)*/  }
+
+    var filename = "graph_" + id + "_" + root.stepcount;
+    exec("echo '"+output+"' > " + filename + ".dot", puts);
+    exec("dot -Tpng " + filename + ".dot -o " + filename + ".png", puts);
+}
+  \end{lstlisting}
+  \caption{Save Funktion}
+  \label{fig:savefn}
+\end{figure}
