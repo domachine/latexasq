@@ -22,12 +22,11 @@ exports.draw = function(node, fathernodetext, depth){
         output += exports.draw(node.edges[i], nodetext, depth+1);
     }
     var color = "";
-    var normalstyle = "";
     if(node.edges.length == 0){
         color = nodetext + " [style=filled,color=\"gray\"];\n\t";
     }
     if(fathernodetext !== undefined)
-        return color + fathernodetext + " -> " + nodetext + " [label=" + node.pheromone + "];\n\t " + normalstyle + output;
+        return color + fathernodetext + " -> " + nodetext + " [label=" + node.pheromone + "];\n\t " + output;
     else
         return "\n\t "+output;
     
