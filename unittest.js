@@ -57,17 +57,6 @@ function main(){
     });
 }
 
-function debug(node){
-    try{
-        var test = JSON.stringify(node);
-        console.log(test);
-    }catch(err){
-        console.error(err);
-        for(var i = 0; i < node.edges.length; i++)
-            debug(node.edges[i]);
-    }
-}
-
 function runTests () {
     buildPathTest ();
 }
