@@ -1,0 +1,41 @@
+digraph G {
+	
+	 "Node 1\n(Ants: 48/36)" -> "Node 2\n(Ants: 3/1)" [label=4954];
+	 "Node 2\n(Ants: 3/1)" -> "Node 3\n(Ants: 0/0)" [label=4952];
+	 "Node 3\n(Ants: 0/0)" -> "Node 4\n(Ants: 1/1)" [label=3908];
+	 "Node 5\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 4\n(Ants: 1/1)" -> "Node 5\n(Ants: 0/0)" [label=84];
+	 "Node 6\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 4\n(Ants: 1/1)" -> "Node 6\n(Ants: 0/0)" [label=172];
+	 "Node 7\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 4\n(Ants: 1/1)" -> "Node 7\n(Ants: 0/0)" [label=1094];
+	 "Node 8\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 4\n(Ants: 1/1)" -> "Node 8\n(Ants: 0/0)" [label=2558];
+	 "Node 3\n(Ants: 0/0)" -> "Node 9\n(Ants: 0/0)" [label=1044];
+	 "Node 10\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 9\n(Ants: 0/0)" -> "Node 10\n(Ants: 0/0)" [label=1044];
+	 "Node 1\n(Ants: 48/36)" -> "Node 11\n(Ants: 0/0)" [label=99];
+	 "Node 11\n(Ants: 0/0)" -> "Node 12\n(Ants: 0/0)" [label=0];
+	 "Node 13\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 12\n(Ants: 0/0)" -> "Node 13\n(Ants: 0/0)" [label=0];
+	 "Node 12\n(Ants: 0/0)" -> "Node 14\n(Ants: 0/0)" [label=0];
+	 "Node 15\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 14\n(Ants: 0/0)" -> "Node 15\n(Ants: 0/0)" [label=0];
+	 "Node 16\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 11\n(Ants: 0/0)" -> "Node 16\n(Ants: 0/0)" [label=20];
+	 "Node 11\n(Ants: 0/0)" -> "Node 17\n(Ants: 0/0)" [label=16];
+	 "Node 17\n(Ants: 0/0)" -> "Node 18\n(Ants: 0/0)" [label=16];
+	 "Node 19\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 18\n(Ants: 0/0)" -> "Node 19\n(Ants: 0/0)" [label=16];
+	 "Node 11\n(Ants: 0/0)" -> "Node 20\n(Ants: 1/0)" [label=63];
+	 "Node 20\n(Ants: 1/0)" -> "Node 21\n(Ants: 0/0)" [label=62];
+	 "Node 22\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 21\n(Ants: 0/0)" -> "Node 22\n(Ants: 0/0)" [label=58];
+	 "Node 23\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 21\n(Ants: 0/0)" -> "Node 23\n(Ants: 0/0)" [label=4];
+	 "Node 24\n(Ants: 26/0)" [style=filled,color="gray"];
+	"Node 1\n(Ants: 48/36)" -> "Node 24\n(Ants: 26/0)" [label=27126];
+	 "Node 25\n(Ants: 61/0)" [style=filled,color="gray"];
+	"Node 1\n(Ants: 48/36)" -> "Node 25\n(Ants: 61/0)" [label=56557];
+	 
+}

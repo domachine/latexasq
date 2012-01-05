@@ -1,0 +1,52 @@
+digraph G {
+	
+	 "Node 2\n(Ants: 9/0)" [style=filled,color="gray"];
+	"Node 1\n(Ants: 516/445)" -> "Node 2\n(Ants: 9/0)" [label=30039];
+	 "Node 3\n(Ants: 4/0)" [style=filled,color="gray"];
+	"Node 1\n(Ants: 516/445)" -> "Node 3\n(Ants: 4/0)" [label=17158];
+	 "Node 1\n(Ants: 516/445)" -> "Node 4\n(Ants: 46/606)" [label=197102];
+	 "Node 5\n(Ants: 30/0)" [style=filled,color="gray"];
+	"Node 4\n(Ants: 46/606)" -> "Node 5\n(Ants: 30/0)" [label=24936];
+	 "Node 4\n(Ants: 46/606)" -> "Node 6\n(Ants: 2/0)" [label=391];
+	 "Node 6\n(Ants: 2/0)" -> "Node 7\n(Ants: 0/0)" [label=30];
+	 "Node 8\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 7\n(Ants: 0/0)" -> "Node 8\n(Ants: 0/0)" [label=8];
+	 "Node 9\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 7\n(Ants: 0/0)" -> "Node 9\n(Ants: 0/0)" [label=22];
+	 "Node 6\n(Ants: 2/0)" -> "Node 10\n(Ants: 0/0)" [label=12];
+	 "Node 11\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 10\n(Ants: 0/0)" -> "Node 11\n(Ants: 0/0)" [label=0];
+	 "Node 12\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 10\n(Ants: 0/0)" -> "Node 12\n(Ants: 0/0)" [label=0];
+	 "Node 13\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 10\n(Ants: 0/0)" -> "Node 13\n(Ants: 0/0)" [label=2];
+	 "Node 14\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 10\n(Ants: 0/0)" -> "Node 14\n(Ants: 0/0)" [label=0];
+	 "Node 15\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 10\n(Ants: 0/0)" -> "Node 15\n(Ants: 0/0)" [label=8];
+	 "Node 16\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 10\n(Ants: 0/0)" -> "Node 16\n(Ants: 0/0)" [label=2];
+	 "Node 6\n(Ants: 2/0)" -> "Node 17\n(Ants: 0/0)" [label=98];
+	 "Node 18\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 17\n(Ants: 0/0)" -> "Node 18\n(Ants: 0/0)" [label=34];
+	 "Node 19\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 17\n(Ants: 0/0)" -> "Node 19\n(Ants: 0/0)" [label=14];
+	 "Node 20\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 17\n(Ants: 0/0)" -> "Node 20\n(Ants: 0/0)" [label=50];
+	 "Node 6\n(Ants: 2/0)" -> "Node 21\n(Ants: 1/0)" [label=249];
+	 "Node 22\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 21\n(Ants: 1/0)" -> "Node 22\n(Ants: 0/0)" [label=88];
+	 "Node 23\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 21\n(Ants: 1/0)" -> "Node 23\n(Ants: 0/0)" [label=160];
+	 "Node 4\n(Ants: 46/606)" -> "Node 24\n(Ants: 221/150)" [label=172335];
+	 "Node 24\n(Ants: 221/150)" -> "Node 25\n(Ants: 498/80)" [label=172264];
+	 "Node 26\n(Ants: 23/0)" [style=filled,color="gray"];
+	"Node 25\n(Ants: 498/80)" -> "Node 26\n(Ants: 23/0)" [label=7887];
+	 "Node 27\n(Ants: 6/0)" [style=filled,color="gray"];
+	"Node 25\n(Ants: 498/80)" -> "Node 27\n(Ants: 6/0)" [label=2846];
+	 "Node 28\n(Ants: 144/0)" [style=filled,color="gray"];
+	"Node 25\n(Ants: 498/80)" -> "Node 28\n(Ants: 144/0)" [label=55734];
+	 "Node 29\n(Ants: 293/0)" [style=filled,color="gray"];
+	"Node 25\n(Ants: 498/80)" -> "Node 29\n(Ants: 293/0)" [label=105379];
+	 
+}

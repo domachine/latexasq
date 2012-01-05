@@ -25,8 +25,10 @@ function addAnts (root) {
     
     var countAnts = Math.floor(Math.random() * globalsN.MAX_ANTS);
     var ants = new Array(countAnts);
-    for(var i = 0; i < countAnts; i++)
+    for(var i = 0; i < countAnts; i++){
         ants[i] = antN.Ant();
+        ants[i].stepcount = root.stepcount;
+    }
 
     root.ants = ants;
 }
@@ -34,7 +36,9 @@ function addAnts (root) {
 function main(){
     root = nodeN.buildPath (5);
     addAnts(root);
-    graphvizN.save(root);
+    
+    var id = (new Date()).getTime();
+    graphvizN.save(root, id);
     
     var stdin = process.openStdin();
     require('tty').setRawMode(true);    
@@ -46,22 +50,11 @@ function main(){
                 antN.step(root);
                 addAnts(root);
 
-                graphvizN.save(root);
+                graphvizN.save(root, id);
             });
         
         if (key && key.ctrl && key.name == 'c') process.exit();
     });
-}
-
-function debug(node){
-    try{
-        var test = JSON.stringify(node);
-        console.log(test);
-    }catch(err){
-        console.error(err);
-        for(var i = 0; i < node.edges.length; i++)
-            debug(node.edges[i]);
-    }
 }
 
 function runTests () {

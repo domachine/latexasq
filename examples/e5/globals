@@ -1,0 +1,2 @@
+exports.MAX_CHILDS = 7;
+exports.MAX_ANTS = 1000;
