@@ -1,0 +1,17 @@
+digraph G {
+	
+	 "Node 2\n(Ants: 33/0)" [style=filled,color="gray"];
+	"Node 1\n(Ants: 674/732)" -> "Node 2\n(Ants: 33/0)" [label=85531];
+	 "Node 1\n(Ants: 674/732)" -> "Node 3\n(Ants: 16/233)" [label=39806];
+	 "Node 4\n(Ants: 199/0)" [style=filled,color="gray"];
+	"Node 3\n(Ants: 16/233)" -> "Node 4\n(Ants: 199/0)" [label=36807];
+	 "Node 3\n(Ants: 16/233)" -> "Node 5\n(Ants: 21/13)" [label=3216];
+	 "Node 6\n(Ants: 9/0)" [style=filled,color="gray"];
+	"Node 5\n(Ants: 21/13)" -> "Node 6\n(Ants: 9/0)" [label=1395];
+	 "Node 5\n(Ants: 21/13)" -> "Node 7\n(Ants: 8/1)" [label=1813];
+	 "Node 8\n(Ants: 6/0)" [style=filled,color="gray"];
+	"Node 7\n(Ants: 8/1)" -> "Node 8\n(Ants: 6/0)" [label=654];
+	 "Node 9\n(Ants: 8/0)" [style=filled,color="gray"];
+	"Node 7\n(Ants: 8/1)" -> "Node 9\n(Ants: 8/0)" [label=1152];
+	 
+}
