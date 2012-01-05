@@ -62,7 +62,7 @@ function nextNode (ant, node) {
         sum += (pheromone + sum);
     }
 
-    random = Math.floor(Math.random() * (a[a.length-1]+1));//generates random int between 0 and sum
+    random = Math.floor(Math.random() * (a[a.length-1]+1));//generates random int between 0 and highest value
 
     for (var i in edges) {
         if(edges[i] === undefined)
@@ -71,12 +71,8 @@ function nextNode (ant, node) {
         if (a[i] >= random)
             return edges[i];
     }
-    console.log("nextnode undefined!");//BUG BUG BUG THIS NEVER EVER SHOULD HAPPEN
-    console.info("rang: 0-"+sum);
-    console.info("random: "+random);
-    console.info(edges);
-    console.info(a);
-    return undefined;
+    
+    return undefined;//should never happen
 }
 
 exports.step = function (root) {
@@ -89,7 +85,6 @@ exports.step = function (root) {
             
             if(ant.stepcount > stepcount)
                 continue;
-            ant.stepcount++;
 
             var next = nextNode(ant, node);
             if(next !== undefined){
@@ -99,8 +94,10 @@ exports.step = function (root) {
 
                 ant.returnPath.push(node);
                 next.pheromone++;
+                
+                ant.stepcount++;
             }else{
-                //ant at leaf node => go home!
+                //ant at leaf node => go home! (implemented in next foreach-loop)
                 node.antsOnHomerun.push(ant);
                 node.ants[i] = undefined;
             }
