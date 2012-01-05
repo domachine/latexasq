@@ -1,0 +1,34 @@
+digraph G {
+	
+	 "Node 1\n(Ants: 2/10)" -> "Node 2\n(Ants: 5/4)" [label=1996];
+	 "Node 2\n(Ants: 5/4)" -> "Node 3\n(Ants: 2/2)" [label=382];
+	 "Node 4\n(Ants: 2/0)" [style=filled,color="gray"];
+	"Node 3\n(Ants: 2/2)" -> "Node 4\n(Ants: 2/0)" [label=382];
+	 "Node 2\n(Ants: 5/4)" -> "Node 5\n(Ants: 0/0)" [label=16];
+	 "Node 5\n(Ants: 0/0)" -> "Node 6\n(Ants: 0/0)" [label=16];
+	 "Node 7\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 6\n(Ants: 0/0)" -> "Node 7\n(Ants: 0/0)" [label=4];
+	 "Node 8\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 6\n(Ants: 0/0)" -> "Node 8\n(Ants: 0/0)" [label=2];
+	 "Node 9\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 6\n(Ants: 0/0)" -> "Node 9\n(Ants: 0/0)" [label=8];
+	 "Node 10\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 6\n(Ants: 0/0)" -> "Node 10\n(Ants: 0/0)" [label=2];
+	 "Node 11\n(Ants: 7/0)" [style=filled,color="gray"];
+	"Node 2\n(Ants: 5/4)" -> "Node 11\n(Ants: 7/0)" [label=1597];
+	 "Node 1\n(Ants: 2/10)" -> "Node 12\n(Ants: 0/0)" [label=204];
+	 "Node 12\n(Ants: 0/0)" -> "Node 13\n(Ants: 0/0)" [label=196];
+	 "Node 13\n(Ants: 0/0)" -> "Node 14\n(Ants: 0/0)" [label=0];
+	 "Node 15\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 14\n(Ants: 0/0)" -> "Node 15\n(Ants: 0/0)" [label=0];
+	 "Node 16\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 14\n(Ants: 0/0)" -> "Node 16\n(Ants: 0/0)" [label=0];
+	 "Node 17\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 14\n(Ants: 0/0)" -> "Node 17\n(Ants: 0/0)" [label=0];
+	 "Node 18\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 13\n(Ants: 0/0)" -> "Node 18\n(Ants: 0/0)" [label=196];
+	 "Node 12\n(Ants: 0/0)" -> "Node 19\n(Ants: 0/0)" [label=8];
+	 "Node 20\n(Ants: 0/0)" [style=filled,color="gray"];
+	"Node 19\n(Ants: 0/0)" -> "Node 20\n(Ants: 0/0)" [label=8];
+	 
+}
