@@ -3,23 +3,20 @@
 \section{Implementierungsdetails}
 
 Der Versuch wird durch ein Javascript Programm nachgestellt, das einen
-Graphen in Baumform aufbaut und zufallgesteuert „Ameisen” erzeugt um
-diese auf dem Graphen zu platzieren. Dann wird der Zustand des Graphen
+Graphen in Baumform aufbaut und zufällig „Ameisen” erzeugt, um
+diese auf dem Startknoten zu platzieren. Dann wird der Zustand des Graphen
 immer schrittweise geändert. Dabei wird für jede einzelne Ameise auf
 jedem Knoten per Zufall entschieden, welchen Weg diese
 einschlägt. Dieser Zufall wird beeinflusst von den auf den Knoten
 anliegenden „Pheromonspuren”. Diese werden erzeugt, wenn eine Ameise
 einen Knoten überkreuzt hat. Um den Zustand zu ändern, wird eine
 Funktion \emph{step} verwendet, die in einem bestimmten Takt
-aufgerufen wird (Siehe \ref{fig:stepfn}).
+aufgerufen wird (Siehe \ref{lstStepfn}).
 
 Die Funktion steigt rekursiv in den kompletten Pfad ab und ändert wie
 oben beschrieben selbigen ab.
 
-\begin{figure}[htbp]
-  \centering
-
-\begin{lstlisting}
+\begin{lstlisting}[captionpos=b, caption=Step Funktion, label=lstStepfn]
 exports.step = function (root) {
     var stepcount = root.stepcount++;
 
@@ -68,20 +65,15 @@ exports.step = function (root) {
     _process (root);
 }
 \end{lstlisting}
-  \caption{Step Funktion}
-  \label{fig:stepfn}
-\end{figure}
 
 Um das ganze nun anschaulisch und für Expermente zugänglich wird das
-Werkzeug \emph{Graphivz} verwendet um den Pfad nach jedem Schritt zu
+Werkzeug \emph{Graphviz} verwendet um den Pfad nach jedem Schritt zu
 visualisieren. Hierfür werden sogenannte \emph{DOT} Dateien
-geschrieben, die \emph{Graphivz} einlesen und interpretieren
+geschrieben, die Graphviz einlesen und interpretieren
 kann. Verwendet werden hierfür die Funktionen \emph{draw} (siehe
-\ref{fig:drawfn}) und \emph{save} (siehe \ref{fig:savefn}).
+\ref{lstDrawfn}) und \emph{save} (siehe \ref{lstSave}).
 
-\begin{figure}[htbp]
-  \centering
-  \begin{lstlisting}
+  \begin{lstlisting}[captionpos=b, caption=Draw Funktion, label=lstDrawfn]
 exports.draw = function(node, fathernodetext, depth){
     var nodetext = "\"Node " +
                node.id +
@@ -106,28 +98,20 @@ exports.draw = function(node, fathernodetext, depth){
         return "\n\t "+output;
 }
   \end{lstlisting}
-  \caption{Draw Funktion}
-  \label{fig:drawfn}
-\end{figure}
 
-\begin{figure}[htbp]
-  \centering
-  \begin{lstlisting}
+  \begin{lstlisting}[captionpos=b, caption=Mehr Text, label=lstSave]
 exports.save = function(root, id){
 
     var output = "digraph G {\n";
     output += "\t" + exports.draw(root, undefined, 0);
     output += "\n}";
 
-    //var sys = require('sys');
     var exec = require('child_process').exec;
-    function puts(error, stdout, stderr) { /*sys.puts(stdout)*/  }
+    function puts(error, stdout, stderr) { }
 
     var filename = "graph_" + id + "_" + root.stepcount;
     exec("echo '"+output+"' > " + filename + ".dot", puts);
     exec("dot -Tpng " + filename + ".dot -o " + filename + ".png", puts);
 }
   \end{lstlisting}
-  \caption{Save Funktion}
-  \label{fig:savefn}
-\end{figure}
+
