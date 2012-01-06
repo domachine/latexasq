@@ -2,8 +2,8 @@
 
 \section{Versuchsdurchführung und Erkenntnisse}
 
-Zur veranschaulichung der Ergebnisse werden diese im Folgenden grafisch dargestellt.
-Bei der Versuchsdurchführung wird stets ein belieber Graph mit zufälliger Anzahl an Ameisen gewählt. Jeder Takt (step) wird in einem Bild veranschaulicht.\par
+Zur Veranschaulichung der Ergebnisse werden diese im Folgenden grafisch dargestellt.
+Bei der Versuchsdurchführung wird stets ein beliebiger Graph mit zufälliger Anzahl an Ameisen gewählt. Jeder Takt (step) wird in einem Bild veranschaulicht.\par
 Zur Visualisierung ist jeder Knoten mit einem eindeutigen Namen versehen.
 Dazu werden links die Anzahl der suchenden und rechts die der heimkehrenden Ameisen abgedruckt.
 Die Zahl auf einer Kante ist die dazugehörige Pheromonspur.
@@ -17,7 +17,7 @@ Abbildung \ref{fig:v1} stellt einen Graphen mit 20 Knoten und elf Blattknoten da
 	\label{fig:v1}
 \end{figure}
 
-Betrachten wir alle Blattknoten (grau) als äquivalente Futterquellen, so ist offensichlicht der Weg über \emph{Node 2} zu \emph{Node 11} der Kürzeste.
+Betrachten wir alle Blattknoten (grau) als äquivalente Futterquellen, so ist offensichtlich der Weg über \emph{Node 2} zu \emph{Node 11} der Kürzeste.
 
 \begin{figure}[htbp]
 	\includegraphics[width=.9\textwidth]{images/v1_6.png}
@@ -26,7 +26,7 @@ Betrachten wir alle Blattknoten (grau) als äquivalente Futterquellen, so ist of
 \end{figure}
 
 Wie Abbildung \ref{fig:v1_6} zeigt ist in Takt 6 der Weg zu Node 11 präferiert.
-Dieser Zustand ist (vgl. Abbildung \ref{fig:v1_334}) in Takt 334 noch mehr ausgeprägt. Interessant ist hierbei jedoch, dass der Weg zu \emph{Node 18} mit 150 besuchten Ameisen auch stark ins Gewicht fällt. Zufällig ist jedoch der Unterschied zwischen den Verschiedenen Pfaden der Länge 4, wie bswp. der zu \emph{Node 20}.
+Dieser Zustand ist (vgl. Abbildung \ref{fig:v1_334}) in Takt 334 noch mehr ausgeprägt. Interessant ist hierbei jedoch, dass der Weg zu \emph{Node 18} mit 150 besuchten Ameisen auch stark ins Gewicht fällt. Zufällig ist jedoch der Unterschied zwischen den Verschiedenen Pfaden der Länge 4, wie beispielsweise der zu \emph{Node 20}.
 \begin{figure}[htbp]
 	\includegraphics[width=.9\textwidth]{images/v1_334.png}
 	\caption{Versuch 1 zu Takt 334.}
@@ -36,8 +36,8 @@ Trotz dieser Streuungen ist die Präferenz für den kürzesten Weg in diesem Ver
 
 \subsection{Versuch 2}
 In Versuch 2 wird ein Graph mit 26 Knoten, davon 16 Blattknoten, untersucht.
-Interessant ist hierbei, dass es mit den Pfaden zu Node 18, 19 und 26 drei äuqivalente kürzeste Pfade gibt.\par
-In Takt 3 (Abbildung \ref{fig:v2_3}) sieht man eine gleichmäßige Verteilung der Ameisen auf die verschiedenen Knoten der dritten Stufe. 
+Interessant ist hierbei, dass es mit den Pfaden zu Node 18, 19 und 26 drei äquivalente kürzeste Pfade gibt.\par
+In Takt 3 (Abbildung \ref{fig:v2_3}) sieht man eine gleichmäßige Verteilung der Ameisen auf die verschiedenen Knoten der dritten Stufe.
 
 \begin{figure}[htbp]
 	\includegraphics[width=.9\textwidth]{images/v2_3.png}
@@ -105,14 +105,14 @@ Diese "`Fehlentscheidung"' ist zu dem späteren Takt 531 (Abbildung \ref{fig:v5_
 	\label{fig:v5_531}
 \end{figure}
 
-Der präferierteste Weg zu \emph{Node 29} ist einer der Längsten. 
+Der präferierteste Weg zu \emph{Node 29} ist einer der Längsten.
 Dieser Versuch zeigt uns klar, dass das anfängliche "`blinde"' Suchen der Ameisen  nur bis zu einer geringen Menge an parallel suchender Ameisen funktioniert, da sonst diese Zufälligkeit leicht die früher heimkehrenden Ameisen übertrifft.
 
 \subsection{Erkenntnisse}
 Wie wir in den Versuchen 1 bis 4 deutlich gesehen haben, funktioniert der Algorithmus für beliebig komplexe Problematiken gut.
-Aufgrund der anfänglich rein zufälligen Auswahl der Wege ist es jedoch nicht möglich eine größere Anzahl von Ameisen auf einmal loszuschicken (vgl Versuch 5).
+Aufgrund der anfänglich rein zufälligen Auswahl der Wege ist es jedoch nicht möglich eine größere Anzahl von Ameisen auf einmal loszuschicken (vgl. Versuch 5).
 Würde man diese reine Zufälligkeit mit etwas Heuristik ausbauen, würden der Algorithmus jedoch auch größere Mengen Ameisen zum gewünschten Ziel führen.
-Aufgrund der Komplexität haben wir jedoch bei unseren Durchführung darauf verzichtet.\par 
+Aufgrund der Komplexität haben wir jedoch bei unseren Durchführung darauf verzichtet.\par
 Offensichtlich, jedoch nicht an einem Beispiel gezeigt, ist, dass die Situation wie sie in Versuch 5 aufgetreten ist auch in jedem anderen Graphen hätte auftreten können. Jedoch haben wir auch hier aufgrund der großen Komplexität darauf verzichtet, mehrere Durchläufe mit dem gleichen Graphen zu protokollieren.
 
 % - anfängliche heuristik
