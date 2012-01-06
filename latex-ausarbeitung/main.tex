@@ -6,6 +6,17 @@
 \usepackage{listings}
 \usepackage{graphicx}
 
+%---------------------------------------------------------------------------
+%  Bibliographie
+%---------------------------------------------------------------------------
+\usepackage[style=authoryear,
+            hyperref=true,
+            isbn=false,
+            firstinits=true,
+]{biblatex}
+\bibliography{Data.bib}       % Gibt den Ort der Bibliographiedatei an
+\usepackage[babel]{csquotes}
+
 \author{Lukas Hauser \and Dominik Burgdörfer}
 \title{Double Bridge Experiment}
 \date{\today}
@@ -20,5 +31,7 @@
 \include{implementation}
 \include{findings}
 \include{conclusion}
+
+\printbibliography
 
 \end{document}
